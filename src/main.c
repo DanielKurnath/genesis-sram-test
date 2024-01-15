@@ -4,6 +4,7 @@
 #define LONG_LENGTH 4
 #define WORD_LENGTH 2
 #define BYTE_LENGTH 2
+#define SRAM_STARTING_OFFSET 0
 
 int main()
 {
@@ -15,7 +16,7 @@ int main()
     
     kprintf("save starting, bytes to be written %ld", saveDataLength);
 
-    u32 sramCurrentByte = SRAM_BASE;
+    u32 sramCurrentByte = SRAM_STARTING_OFFSET;
 
     kprintf("memory position: %ld", sramCurrentByte);
     kprintf("byte data: %ld", saveDataLength);
@@ -32,18 +33,18 @@ int main()
         kprintf("memory position: %ld", sramCurrentByte);
         kprintf("byte data: %c", testString[sramByteBeingWritten]);
     }
-    SRAM_disable();
+    // SRAM_disable();
     kprintf("save complete");
     VDP_drawText("SAVE COMPLETE", 10,14);
 
 
-    SRAM_enable();
-    sramCurrentByte = SRAM_BASE;
+    // SRAM_enable();
+    sramCurrentByte = SRAM_STARTING_OFFSET;
     
     kprintf("Save Data Starting Address %ld", sramCurrentByte);
 
-    // u32 saveDataReadLength = SRAM_readLong(sramCurrentByte);
-    u32 saveDataReadLength = 15;
+    u32 saveDataReadLength = SRAM_readLong(sramCurrentByte);
+    // u32 saveDataReadLength = 15;
     kprintf("Save Data Length %ld", saveDataReadLength);
     sramCurrentByte += LONG_LENGTH;
     char saveDataBeingRead[saveDataReadLength];
