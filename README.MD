@@ -1,3 +1,3 @@
-# My Awesome Game
+# Genesis S-RAM Test
 
-This is My Awesome 16 Bit Cartridge game for mega Drive
+Testing out S-RAM Read/Write Operations for Sega Genesis carts.
